@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="config/img/happy-birthday.png"/>
+    <title>Aniversário</title>
+    <link rel="stylesheet" href="config/css/default.css">
+</head>
+<body>
+    <div class="container">
+      <div class="countdown">
+        <h1 id="headline">Contagem para o Aniversário</h1>
+          <ul>
+            <li><span id="dias"></span>Dias</li>
+            <li><span id="horas"></span>Horas</li>
+            <li><span id="minutos"></span>Minutos</li>
+            <li><span id="segundos"></span>Segundos</li>
+          </ul>
+        </div>
+    </div>
+    <script>
+    // Função para o contador
+    (function () {
+    const segundos = 1000,
+          minutos = segundos * 60,
+          horas = minutos * 60,
+          dias = horas * 24;
+  
+    // Esta sessão é para não precisar atualizar o aniversário todo ano
+    let data = new Date(), ano = data.getFullYear(),  proxAno = ano + 1;
+    const diaMes = '14/06/';
+    let aniversario = diaMes + ano;
+    
+    if (data > aniversario) {
+      aniversario = diaMes + proxAno;
+    }
+    // Fim
+
+    // Formata para que receba o jeito certo no Date
+    const formatado = aniversario.split('/');
+    aniversario = `${formatado[1]}/${formatado[0]}/${formatado[2]}`;
+
+    // Inicia a contagem
+    const contagemRegressiva = new Date(aniversario).getTime(),
+        x = setInterval(function() {
+          const agora = new Date().getTime(), distancia = contagemRegressiva - agora;
+            document.getElementById("dias").innerText = String(Math.floor(distancia / (dias))).padStart(2, "0"),
+            document.getElementById("horas").innerText = String(Math.floor((distancia % (dias)) / (horas))).padStart(2, "0"),
+            document.getElementById("minutos").innerText = String(Math.floor((distancia % (horas)) / (minutos))).padStart(2, "0"),
+            document.getElementById("segundos").innerText = String(Math.floor((distancia % (minutos)) / segundos)).padStart(2, "0");
+  
+          // Redireciona ao chegar em 0
+          if (distancia < 0) {
+            clearInterval(x);
+            // Cria o cookie para verificar se a contagem chegou a 0! Caso não tenha, redireciona para o index novamente
+            localStorage.setItem('terminoContagemRegressiva', 'true');
+            document.getElementById("dias").innerText = '00',
+            document.getElementById("horas").innerText = '00',
+            document.getElementById("minutos").innerText = '00',
+            document.getElementById("segundos").innerText = '00';
+            document.location.href = 'presente.html';
+          }
+          //seconds
+        }, 1000)
+    }());
+    </script>
+</body>
+</html>
