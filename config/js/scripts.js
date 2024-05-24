@@ -1,6 +1,10 @@
 
 // Adiciona um ID ao elemento canvas e inicia os balões de aniversário
+<<<<<<< HEAD
 function animarCanvas(){
+=======
+function adicionarIdEAnimar() {
+>>>>>>> 50d842df31db412c3292638ab5610ce5d5796e85
   const canvas = document.getElementById("animacao");
   canvas.id = "c";
   // Balões do aniversário
@@ -424,8 +428,15 @@ function mudarPresente(elemento) {
 
   // Gera um texto aleatório para substituir o conteúdo existente
   const mensagens = [
+<<<<<<< HEAD
       "Ganhou um presente da AliExpress!!!",
       "Ganhou muito sushi!!!"
+=======
+      "Ganhou uma tattoo!!!",
+      //"Ganhou depilação à laser!!!",
+      "Ganhou muito sushi!!!",
+      "Ganhou uma garrafa stanley novinha!!!"
+>>>>>>> 50d842df31db412c3292638ab5610ce5d5796e85
   ];
   const indiceAleatorio = Math.floor(Math.random() * mensagens.length);
   const novaMensagem = mensagens[indiceAleatorio].toUpperCase();
